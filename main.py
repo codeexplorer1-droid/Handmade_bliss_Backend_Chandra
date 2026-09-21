@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List, Union
 import hashlib
@@ -6,13 +7,21 @@ from datetime import datetime, timedelta
 import jwt
 
 from database import engine, SessionLocal, Base
-from models import Product, User, ContactMessage, wishlist_association
+from models import Product, User, ContactMessage, wishlist_association 
 import schemas
 
 # Create tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Handmade Bliss API", version="1.0.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Dependency
 def get_db():

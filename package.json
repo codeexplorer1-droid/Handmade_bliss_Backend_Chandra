@@ -1,0 +1,16 @@
+{
+  "name": "handmade-bliss-backend",
+  "version": "1.0.0",
+  "description": "FastAPI backend for the Handmade Bliss application",
+  "private": true,
+  "scripts": {
+    "setup": "python -m pip install -r requirements.txt",
+    "dev": "uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
+    "start": "uvicorn main:app --host 0.0.0.0 --port 8000",
+    "lint": "python -m compileall .",
+    "test": "python -m pytest -q"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
